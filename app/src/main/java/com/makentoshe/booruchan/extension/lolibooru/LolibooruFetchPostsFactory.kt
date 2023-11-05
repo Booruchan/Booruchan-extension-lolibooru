@@ -18,7 +18,7 @@ class LolibooruFetchPostsFactory(
             url = "$host/post/index.json",
             parameters = mapOf(
                 "limit" to request.count.toString(),
-                "pid" to request.page.toString(),
+                "page" to request.page.toString(),
                 "tags" to request.tags,
             )
         )
