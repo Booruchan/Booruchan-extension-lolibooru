@@ -12,6 +12,9 @@ class LolibooruFetchPostsFactory(
     private val host: String,
     fetchPostsParser: FetchPostsParser,
 ) : FetchPostsFactory(fetchPostsParser) {
+
+    override val initialPageNumber: Int get() = 1
+
     override fun buildRequest(request: FetchPostsRequest): NetworkRequest {
         return NetworkRequest(
             method = NetworkMethod.Get,
