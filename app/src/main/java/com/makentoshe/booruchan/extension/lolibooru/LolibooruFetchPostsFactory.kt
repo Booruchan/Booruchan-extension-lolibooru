@@ -5,16 +5,18 @@ import com.makentoshe.booruchan.extension.base.factory.FetchPostsFactory
 import com.makentoshe.booruchan.extension.base.network.NetworkMethod
 import com.makentoshe.booruchan.extension.base.network.NetworkRequest
 import com.makentoshe.booruchan.extension.base.parser.FetchPostsParser
+import com.makentoshe.booruchan.extension.base.settings.SourceSettings
 import com.makentoshe.booruchan.extension.lolibooru.entity.NetworkLolibooruPosts
 import kotlinx.serialization.json.Json
 
 class LolibooruFetchPostsFactory(
     private val host: String,
     fetchPostsParser: FetchPostsParser,
-) : FetchPostsFactory(fetchPostsParser) {
-
-    override val initialPageNumber: Int get() = 1
-
+    sourceSettings: SourceSettings,
+) : FetchPostsFactory(
+    fetchPostsParser = fetchPostsParser,
+    sourceSettings = sourceSettings,
+) {
     override fun buildRequest(request: FetchPostsRequest): NetworkRequest {
         return NetworkRequest(
             method = NetworkMethod.Get,
