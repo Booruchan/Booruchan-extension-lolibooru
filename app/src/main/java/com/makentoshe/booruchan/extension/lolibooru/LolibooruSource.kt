@@ -1,47 +1,35 @@
 package com.makentoshe.booruchan.extension.lolibooru
 
-import com.makentoshe.booruchan.extension.base.Source
-import com.makentoshe.booruchan.extension.base.factory.AutocompleteSearchFactory
-import com.makentoshe.booruchan.extension.base.factory.FetchPostsFactory
-import com.makentoshe.booruchan.extension.base.factory.HealthCheckFactory
-import com.makentoshe.booruchan.extension.base.settings.SourceSearchSettings
-import com.makentoshe.booruchan.extension.base.settings.SourceSettings
+import org.booruchan.extension.sdk.Source
+import org.booruchan.extension.sdk.factory.AutocompleteSearchFactory
+import org.booruchan.extension.sdk.factory.FetchPostsFactory
+import org.booruchan.extension.sdk.factory.HealthCheckFactory
+import org.booruchan.extension.sdk.settings.SourceSettings
+import org.booruchan.extensions.lolibooru.LolibooruSource
 
 class LolibooruSource : Source {
 
+    private val source = LolibooruSource()
+
     override val id: String
-        get() = "lolibooru"
+        get() = source.id
 
     override val host: String
-        get() = "https://lolibooru.moe"
+        get() = source.host
 
     override val title: String
-        get() = "Lolibooru"
+        get() = source.title
 
     override val settings: SourceSettings
-        get() = SourceSettings(
-            searchSettings = SourceSearchSettings(
-                initialPageNumber = 1,
-            ),
-        )
+        get() = source.settings
 
     override val healthCheckFactory: HealthCheckFactory
-        get() = LolibooruHealthCheckFactory(
-            host = host,
-        )
+        get() = source.healthCheckFactory
 
     override val fetchPostsFactory: FetchPostsFactory
-        get() = LolibooruFetchPostsFactory(
-            host = host,
-            fetchPostsParser = LolibooruFetchPostsParser(),
-            sourceSettings = settings,
-        )
+        get() = source.fetchPostsFactory
 
     override val autocompleteSearchFactory: AutocompleteSearchFactory
-        get() = LolibooruAutocompleteSearchFactory(
-            host = host,
-            autocompleteSearchParser = LolibooruAutocompleteSearchParser(),
-            sourceSettings = settings,
-        )
+        get() = source.autocompleteSearchFactory
 
 }
